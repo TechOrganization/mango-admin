@@ -17,4 +17,6 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
     List<SysUser> findAll();
 
     List<SysUser> findPage();
+
+    SysUser selectByUserName(String username);
 }

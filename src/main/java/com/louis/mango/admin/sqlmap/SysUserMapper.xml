@@ -37,4 +37,15 @@
         <include refid="Base_SysUser_Column"/>
         from sys_user
     </select>
+
+    <select id="selectByUserName" resultMap="BaseSysUserMap">
+        select
+        <include refid="Base_SysUser_Column"/>
+        from sys_user
+        <where>
+            <if test="username != '' and username != null">
+                name = #{username}
+            </if>
+        </where>
+    </select>
 </mapper>

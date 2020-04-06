@@ -82,6 +82,18 @@ public class SysUserServiceImpl implements SysUserService {
         return createUserExcelFile(pageResult.getContent());
     }
 
+    /**
+     * 名称获取用户
+     *
+     * @param username
+     * @return
+     */
+    @Override
+    public SysUser findByName(String username) {
+        SysUser sysUser = sysUserMapper.selectByUserName(username);
+        return sysUser;
+    }
+
     @Override
     public boolean save(SysUser record) {
         sysUserMapper.insert(record);
