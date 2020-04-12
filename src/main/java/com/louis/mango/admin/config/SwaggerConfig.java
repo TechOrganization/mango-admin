@@ -1,5 +1,6 @@
 package com.louis.mango.admin.config;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -30,13 +31,15 @@ public class SwaggerConfig {
 
     @Bean
     public Docket createRestApi() {
-        // 添加请求参数，我们这里把Token作为请求头部参数传入后台
+        // 添加请求参数，我们这里把token作为请求头部参数传入后端
         ParameterBuilder parameterBuilder = new ParameterBuilder();
         List<Parameter> parameters = new ArrayList<>();
-        parameterBuilder.name("token").description("令牌").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
+        parameterBuilder.name("token").description("令牌")
+                .modelRef(new ModelRef("string")).parameterType("header").required(false).build();
         parameters.add(parameterBuilder.build());
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
-                .apis(RequestHandlerSelectors.any()).paths(PathSelectors.any()).build().globalOperationParameters(parameters);
+                .apis(RequestHandlerSelectors.any()).paths(PathSelectors.any())
+                .build().globalOperationParameters(parameters);
     }
 
     private ApiInfo apiInfo() {
