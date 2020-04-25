@@ -12,10 +12,7 @@ import com.mango.mango.common.utils.IOUtils;
 import com.mango.mango.core.http.HttpResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -56,13 +53,13 @@ public class SysLoginController {
         IOUtils.closeQuietly(out);
     }
 
-    @RequestMapping(value = "/login")
+    @PostMapping(value = "/login")
     public HttpResult login(@RequestBody LoginBean loginBean, HttpServletRequest request) {
         String username = loginBean.getAccount();
         String password = loginBean.getPassword();
         String captcha = loginBean.getCaptcha();
         // 从session中获取之前保存的验证码，跟前台传来的验证码进行匹配
-        Object kaptcha = request.getSession().getAttribute("Constants.KAPTCHA_SESSION_KEY");
+        Object kaptcha = request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
         if (kaptcha == null) {
             return HttpResult.error("验证码已失效");
         }
