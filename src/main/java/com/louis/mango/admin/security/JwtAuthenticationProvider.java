@@ -16,7 +16,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  */
 public class JwtAuthenticationProvider extends DaoAuthenticationProvider {
 
-
     public JwtAuthenticationProvider(UserDetailsService userDetailsService) {
         setUserDetailsService(userDetailsService);
     }
@@ -37,6 +36,5 @@ public class JwtAuthenticationProvider extends DaoAuthenticationProvider {
             throw new BadCredentialsException(messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"));
         }
     }
-
 
 }

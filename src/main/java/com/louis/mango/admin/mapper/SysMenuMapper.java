@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
-    SysMenu selectByPrimaryKey(Long id);
+    SysMenu selectByPrimary(Long id);
 
 
     int updateByPrimaryKey(SysMenu record);
