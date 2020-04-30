@@ -1,6 +1,7 @@
 # 端口好
 server:
   port: 8001
+
 spring:
   # 数据源
   datasource:
@@ -25,6 +26,8 @@ spring:
       pool-prepared-statements: true
       max-open-prepared-statements: 50
       max-pool-prepared-statement-per-connection-size: 20
+  application:
+    name: mango-amdin
 
 # pageHelper
 pagehelper:
@@ -32,3 +35,8 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
 params: count=counySql
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:123456@localhost:7000/eureka
