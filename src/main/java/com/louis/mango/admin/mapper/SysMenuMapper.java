@@ -1,17 +1,16 @@
 package com.louis.mango.admin.mapper;
 
 import com.louis.mango.admin.entity.SysMenu;
+import tk.mybatis.mapper.common.BaseMapper;
 
-public interface SysMenuMapper {
-    int deleteByPrimaryKey(Long id);
+import java.util.List;
 
-    int insert(SysMenu record);
+public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
-    int insertSelective(SysMenu record);
+    SysMenu selectByPrimary(Long id);
 
-    SysMenu selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(SysMenu record);
 
     int updateByPrimaryKey(SysMenu record);
+
+    List<SysMenu> findByUserName(String username);
 }

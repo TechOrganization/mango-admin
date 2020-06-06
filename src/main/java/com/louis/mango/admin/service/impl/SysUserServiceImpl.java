@@ -1,6 +1,8 @@
 package com.louis.mango.admin.service.impl;
 
+import com.louis.mango.admin.entity.SysMenu;
 import com.louis.mango.admin.entity.SysUser;
+import com.louis.mango.admin.mapper.SysMenuMapper;
 import com.louis.mango.admin.mapper.SysUserMapper;
 import com.louis.mango.admin.service.SysUserService;
 import com.mango.mango.common.utils.DateTimeUtils;
@@ -18,12 +20,16 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class SysUserServiceImpl implements SysUserService {
 
     @Autowired
     private SysUserMapper sysUserMapper;
+    @Autowired
+    private SysMenuMapper menuMapper;
 
     public static File createUserExcelFile(List<?> records) {
         if (records == null) {
@@ -72,6 +78,13 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
+    public Set<String> findPermission(String username) {
+        List<SysMenu> sysMenus = menuMapper.findByUserName(username);
+        Set<String> permissions = sysMenus.stream().map(SysMenu::getPerms).collect(Collectors.toSet());
+        return permissions;
+    }
+
+    @Override
     public List<SysUser> findAll() {
         return sysUserMapper.findAll();
     }
@@ -80,6 +93,18 @@ public class SysUserServiceImpl implements SysUserService {
     public File createUserExcelFile(PageRequest pageRequest) {
         PageResult pageResult = findPage(pageRequest);
         return createUserExcelFile(pageResult.getContent());
+    }
+
+    /**
+     * 名称获取用户
+     *
+     * @param username
+     * @return
+     */
+    @Override
+    public SysUser findByName(String username) {
+        SysUser sysUser = sysUserMapper.selectByUserName(username);
+        return sysUser;
     }
 
     @Override

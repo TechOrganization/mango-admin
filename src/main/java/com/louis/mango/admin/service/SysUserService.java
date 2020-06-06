@@ -6,8 +6,17 @@ import com.mango.mango.core.service.CurdService;
 
 import java.io.File;
 import java.util.List;
+import java.util.Set;
 
 public interface SysUserService extends CurdService<SysUser> {
+
+    /**
+     * 查找用户的菜单权限标识集合
+     *
+     * @param username
+     * @return
+     */
+    Set<String> findPermission(String username);
 
     /**
      * 查找所有用户
@@ -23,5 +32,13 @@ public interface SysUserService extends CurdService<SysUser> {
      * @return
      */
     File createUserExcelFile(PageRequest pageRequest);
+
+    /**
+     * 用户名获取信息
+     *
+     * @param username
+     * @return
+     */
+    SysUser findByName(String username);
 
 }
