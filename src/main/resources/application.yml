@@ -3,6 +3,8 @@ server:
   port: 8001
 
 spring:
+  application:
+    name: admin
   # 数据源
   datasource:
     name: druidDataSource
@@ -35,7 +37,10 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
 params: count=counySql
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 eureka:
   client:
     service-url:
